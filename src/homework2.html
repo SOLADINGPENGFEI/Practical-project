@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var that
+        function myPromise(fn) {
+            this.status = 'pending'
+            this.resolveParams = ''
+            this.rejectParams = ''
+            this.init()
+
+            fn(this.resolve, this.reject)
+        }
+
+        myPromise.prototype = {
+            constructor: myPromise,
+            init() {
+                that = myPromise.prototype
+
+            },
+            resolve(params) {
+                that.resolveParams = params
+                that.status = 'pending'
+            },
+            reject(params) {
+                that.rejectParams = params
+                that.status = 'pending'
+            },
+            then(_fn) {
+                // 状态为pending且有调用 才回调
+                if(that.resolveParams&&that.status=='pending') {
+                    _fn(that.resolveParams)
+                    that.resolveParams = ''
+                    that.status = 'resolved'
+                }
+                return new myPromise(()=>{})
+            },
+            catch(_fn) {
+                 // 状态为pending且有调用 才回调
+                 if(that.resolveParams&&that.status=='pending') {
+                    _fn(that.rejectParams)
+                    that.resolveParams = ''
+                    that.status = 'rejected'
+                }
+            },
+        }
+        var url = 'http://e.hiphotos.baidu.com/image/pic/item/359b033b5bb5c9eac1754f45df39b6003bf3b396.jpg'
+            function loading(src) {
+                return new myPromise((resolve,reject)=>{
+                    let img = document.createElement('img')
+                    img.src = src
+                    document.body.append(img)
+                    img.onload = function() {
+                        resolve(img)
+                    }
+                    img.onerror = function(e) {
+                        reject(e)
+                    }
+                    // if(status == 200) {
+                    //     resolve(img)
+                    // } else if(status == 404) {
+                    //     reject(status + 'ooh error')
+                    // }
+                })
+            }
+            loading(url).then(res=>{
+                console.log('res...',res)
+            },err=>{
+                console.log('err',err)
+            })
+            // loading(200).then(res=>{
+            //     console.log('res...',res)
+            // }).catch(err=>{
+            //     console.log('err...',err)
+            // })
+            // loading(404).then(res=>{
+            //     console.log('res...',res)
+            // }).catch(err=>{
+            //     console.log('err...',err)
+            // })
+    </script>
+</body>
+</html>

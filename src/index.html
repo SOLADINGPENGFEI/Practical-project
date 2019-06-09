@@ -69,21 +69,46 @@
                 })
             }
 
-            loading(url).then(res=>{
-                document.body.appendChild(res)
-                return 100
-            },err=>{
-                console.log('error...',err)
-            }).then(res1=>{
-                console.log('res1...',res1)
-                return 200
-            },err1=>{
-                console.log('err1...',err1)
-            }).then(res2=>{
-                console.log('res2...',res2)
-            },err2=>{
+            // loading(url).then(res=>{
+            //     document.body.appendChild(res)
+            //     return 100
+            // },err=>{
+            //     console.log('error...',err)
+            // }).then(res1=>{
+            //     console.log('res1...',res1)
+            //     return 200
+            // },err1=>{
+            //     console.log('err1...',err1)
+            // }).then(res2=>{
+            //     console.log('res2...',res2)
+            // },err2=>{
 
-            })
+            // }).catch(()=>{
+
+            // }).finally(()=>{
+
+            // })
+            
+            /**async/await*/
+            async function load() {
+                try {
+                    let img = await loading(url)
+                    let num = await '1960x1690'
+                    console.log('num>>>',num)
+                    document.body.appendChild(img)
+                }
+                catch(e) {
+
+                }
+            }
+            load().then(res=>{console.log('res...',res)})
+
+            /**深浅拷贝*/
+            var arr1 = [1,2,3,{list:[4,5,6]}]
+            var arr2 = [...arr1]
+            arr1[3].list.push(7)
+            console.log('arr1===arr2',arr1,arr2,arr1 === arr2,arr1.list === arr2.list,arr2[3].list)
+
     </script>
 </body>
 </html>

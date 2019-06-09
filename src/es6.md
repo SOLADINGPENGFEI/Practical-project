@@ -35,3 +35,5 @@ let proxy = new Proxy(target, handler);
     Promise,async/await,generator
     Promise的三种状态: pending, fulfilled, rejected
     Promise的两个静态方法: resolve, reject
+    Promise的两个控制时序的方法：all、race
+5. 深浅拷贝  数组：[...arr]、concat()、slice()  对象：拓展运算符({...obj})、object.assign   JSON.parse(JOSN.stringify(str))

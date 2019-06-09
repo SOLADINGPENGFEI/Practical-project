@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+        img {
+            width: 200px;
+            height: 200px;
+        }
+</style>
+<body>
+    <script>
+        const arrImg = ['./images/1.jpg','./images/2.jpg','./images/3.jpg','./images/4.jpg','./images/5.jpg',
+        './images/6.jpg','./images/7.jpg','./images/8.jpg','./images/9.jpg','./images/10.jpg']
+        function loading(src) {
+            return new Promise((resolve,reject)=>{
+                let img = document.createElement('img')
+                img.src = src
+                document.body.append(img)
+                setTimeout(()=>{
+                    resolve(true)
+                },1000)
+                // resolve(true)
+            })
+        }
+        async function load(arrImg){
+            for(let i of arrImg) {
+                await loading(i)
+            }
+        }
+        load(arrImg)
+   
+        function Person(success) {
+            setTimeout(function(){
+                console.log('This is li')
+                success()
+            },1000)
+        }
+        function sleepFirst(success) {
+            setTimeout(function(){
+                console.log('...等待10ms')
+                success()
+            },10)
+        }
+        function eat(success) {
+            setTimeout(function(){
+                console.log('eat danner')
+                success()
+            },1000)
+        }
+        function sleep(success) {
+            setTimeout(function(){
+                console.log('...等待5s')
+                success()
+            },5000)
+        }
+        function eatNight(success) {
+            setTimeout(function(){
+                console.log('eat 晚饭')
+                success()
+            },1000)
+        }
+        function sleepEnd(success) {
+            setTimeout(function(){
+                console.log('...3s后结束')
+                success()
+            },3000)
+        }
+        function MyPromise(func) {
+            var self = this
+            var count = 0
+            this.cbklist = []
+            this.then = function(callback) {
+                this.cbklist.push(callback)
+                return this
+            }
+            this.success = function() {
+                if(count == self.cbklist.length) return;
+                self.cbklist[count++](self.success)
+                document.body
+            }
+            setTimeout(function() {
+                func(self.success)
+            },0)
+        }
+        new MyPromise(Person).then(sleepFirst).then(eat).then(sleep).then(eatNight).then(sleepEnd)
+    </script>
+</body>
+</html>
