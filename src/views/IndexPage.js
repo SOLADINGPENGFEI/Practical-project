@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import {BrowserRouter,Link} from 'dva/router'
-// import RouterConfig from '../router'
-import Main from '../components/Main/index'
 import './IndexPage.css'
 
-function IndexPage() {
+function IndexPage(props) {
+  console.log(props)
   return (
+
         <div className={styles.index}>
       <div className={styles.login}>
       <Form className="login-form" className={styles.login_form}>
@@ -29,17 +28,12 @@ function IndexPage() {
           <Checkbox>记住密码</Checkbox>
           <a className="login-form-forgot" href="">忘记密码</a><br/>
         </Form.Item>
-        {/* <Link to="/main" component={Main}>
-       
-        </Link> */}
-         <Button type="primary" htmlType="submit" 
-        className="login-form-button" className={styles.login_form_button}
-        >登录</Button>
+          <Button type="primary" htmlType="submit" 
+          className="login-form-button" className={styles.login_form_button}
+          onClick={()=>props.history.push('/main')}>登录</Button>
       </Form>
       </div>
-      <Main />
     </div>
-    
   );
 }
 
