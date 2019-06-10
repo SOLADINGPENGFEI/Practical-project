@@ -22,10 +22,10 @@
   border-radius: 5px;
   padding: 40px 20px;
 }
-.form_pwd{
+/* .form_pwd{
   display: flex;
   justify-content: space-between;
-}
+} */
 .login_form_button{
   width: 100%;
 }

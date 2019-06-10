@@ -2,12 +2,9 @@ import React from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import "antd/dist/antd.css";
-import "../index.css";
+
 
 function IndexPage() {
-
-
   return (
     <div className={styles.index}>
       <div className={styles.login}>
