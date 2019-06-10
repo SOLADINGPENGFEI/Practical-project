@@ -16,7 +16,7 @@ class Main extends Component {
   };
   render() {
     const menu = (
-      <Menu>
+      <Menu style={{marginTop:"30px"}}>
         <Menu.Item>
           <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
             个人中心
@@ -43,11 +43,12 @@ class Main extends Component {
       <div className={style.main} style={{width:"100%",height:"100%"}}>
           <div className={style.header}>
                <img src="/public/bwLOGO.png" alt=""/>
-               <div>
-                  <img src="/public/head.jpg" alt=""/>
+               <div className={style.person_data}>
                   <Dropdown overlay={menu}>
-                      <a className="ant-dropdown-link" href="#">
-                        个人信息 <Icon type="down" />
+                      <a className="ant-dropdown-link" href="#" style={{color:"#000"}}>
+                      <img src="/public/head.jpg" alt=""/>
+                        个人信息 
+                        <Icon type="down" />
                       </a>
                   </Dropdown>
                </div>
