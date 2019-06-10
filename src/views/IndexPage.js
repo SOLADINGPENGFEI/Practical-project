@@ -10,19 +10,6 @@ function IndexPage() {
 
   return (
     <div className={styles.index}>
-      {/* <div>
-        <div>
-          <div>
-
-            <input placeholder='请输入用户名'></input>
-          </div>
-          <div>
-
-            <input placeholder='请输入用户密码'></input>
-          </div>
-          
-        </div>
-      </div> */}
       <div className={styles.login}>
       <Form className="login-form" className={styles.login_form}>
         <Form.Item>
