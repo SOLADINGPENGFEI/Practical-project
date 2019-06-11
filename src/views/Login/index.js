@@ -13,7 +13,7 @@ function LoginPage(props) {
               user_pwd: 'Chenmanjie123!'
           })
       }, [])
-
+        
         let handleSubmit = e => {
             e.preventDefault();
             props.form.validateFields((err, values) => {
@@ -24,7 +24,7 @@ function LoginPage(props) {
                     user_pwd: values.password
                 })
             }
-            // console.log(props)
+            console.log(props)
             });
         };
       const { getFieldDecorator } = props.form;
@@ -83,7 +83,7 @@ LoginPage.propTypes = {
 
 //props 的默认值
 LoginPage.defaultProps = {
-
+    props: null
 }
 
 const mapState = state => {
@@ -95,7 +95,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
     return {
         login(payload) {
-            console.log(payload)
+            // console.log(payload)
             dispatch({
                 type:'user/login',
                 payload
