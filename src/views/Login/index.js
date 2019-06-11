@@ -5,6 +5,13 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import styles from './login.css';
 
 function LoginPage(props) {
+    const [state, setState] = useState(() => {
+      // const initialState = someExpensiveComputation(props)
+      // return initialState
+      return {code:1}
+    })
+    console.log(state)
+    
       //掉登陆接口
       let {login} = props
       useEffect(()=>{
@@ -83,7 +90,7 @@ LoginPage.propTypes = {
 
 //props 的默认值
 LoginPage.defaultProps = {
-    props: null
+    // props: null
 }
 
 const mapState = state => {

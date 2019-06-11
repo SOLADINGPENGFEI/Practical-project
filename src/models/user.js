@@ -5,7 +5,7 @@ export default {
   
     // 模块内部的状态
     state: {
-      
+        list:{}
     },
   
     subscriptions: {
@@ -21,23 +21,19 @@ export default {
         console.log('data...',data)
         yield put({
           type: 'save',
-          data
+          action:data
         })
       },
-      *fetch({ payload }, { call, put }) {  // eslint-disable-line
-        // yield put({ type: 'save' });
-      },
+      // *fetch({ payload }, { call, put }) {  // eslint-disable-line
+      //   // yield put({ type: 'save' });
+      // },
     },
   
     // 同步操作
     reducers: {
-      'save'(state, {action:payload}) {
-        console.log('state...',state)
-        console.log('action...',payload)
-        return {
-            ...state,
-            ...payload
-        }
+      save(state, {action}) {
+       console.log(action)
+        return state.list = action
       },
       
     },
