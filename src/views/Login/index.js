@@ -18,12 +18,13 @@ function LoginPage(props) {
             e.preventDefault();
             props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                console.log('values...', values);
                 login({
                     user_name: values.username,
                     user_pwd: values.password
                 })
             }
+            // console.log(props)
             });
         };
       const { getFieldDecorator } = props.form;
@@ -45,7 +46,7 @@ function LoginPage(props) {
           {getFieldDecorator('password', {
             validateTrigger:'onBlur',
             rules: [
-                { pattern: /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$)^.{8,16}$/,
+                { required: true,pattern: /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$)^.{8,16}$/,
                  message: '请输入正确的密码!' }
                 ],
           })(
@@ -65,7 +66,7 @@ function LoginPage(props) {
             忘记密码
           </a>
           <Button type="primary" htmlType="submit" className={styles.login_form_button} 
-          onClick={()=>props.history.push('/Main')}>
+          >
             登录
           </Button>
           或者 <a href="">立即注册!</a>
@@ -88,12 +89,13 @@ LoginPage.defaultProps = {
 const mapState = state => {
     console.log('state...',state)
     return {
-       
+       state
     }
 }
 const mapDispatch = dispatch => {
     return {
         login(payload) {
+            console.log(payload)
             dispatch({
                 type:'user/login',
                 payload

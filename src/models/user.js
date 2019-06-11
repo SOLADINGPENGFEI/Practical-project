@@ -14,9 +14,13 @@ export default {
     // 异步操作
     effects: {
       *login({payload},{call, put}) {
-        console.log('payload...', payload, login)
+        // console.log('payload...', payload, login)
         let data = yield call(login,payload)
         console.log('data...',data)
+        yield put({
+          type: 'save',
+          data
+        })
       },
       *fetch({ payload }, { call, put }) {  // eslint-disable-line
         yield put({ type: 'save' });
@@ -25,8 +29,9 @@ export default {
   
     // 同步操作
     reducers: {
-      save(state, action) {
-        return { ...state, ...action.payload };
+      save(state, {action}) {
+
+        return { ...state, ...action };
       },
     },
   
