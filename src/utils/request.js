@@ -1,30 +1,23 @@
-import fetch from 'dva/fetch';
+import axios from 'axios'
 
-function parseJSON(response) {
-  return response.json();
-}
+const service=axios.create({
+  baseURL:'http://169.254.12.10:7001/',
+  timeout:5000
 
-function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
+})
+
+service.interceptors.request.use(
+  config=>{
+    return config
+  },
+  error=>{
+    return Promise.reject(error)
   }
+)
 
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
-}
-
-/**
- * Requests a URL, returning a promise.
- *
- * @param  {string} url       The URL we want to request
- * @param  {object} [options] The options we want to pass to "fetch"
- * @return {object}           An object containing either "data" or "err"
- */
-export default function request(url, options) {
-  return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON)
-    .then(data => ({ data }))
-    .catch(err => ({ err }));
-}
+service.interceptors.response.use(
+  response=>response.data,
+  error=>{
+    return Promise.reject(error)
+  }
+)
