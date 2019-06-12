@@ -23,6 +23,7 @@ function LoginPage(props){
     }
   }, [props.isLogin]);
 
+  
   // 处理表单提交
   let handleSubmit = e => {
     e.preventDefault();

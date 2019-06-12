@@ -19,6 +19,7 @@ class QuestionAdd extends Component {
     })
   }
 
+  
   handleChange(value) {
     this.setState({
       value
