@@ -13,8 +13,9 @@ function LoginPage(props) {
           //存储cookie
           //跳转主页面
           console.log('props.history',props.history)
-          let pathName = decodeURIComponent(props.history.location.search.split('=')[1])
-          props.history.replace(pathName)
+          props.history.replace("/main")
+          // let pathName = decodeURIComponent(props.history.location.search.split('=')[1])
+          // props.history.replace(pathName)
       } else if(props.isLogin === -1) {
         message.error('用户名或密码错误')
       }
@@ -74,7 +75,6 @@ function LoginPage(props) {
           </a>
           <Button type="primary" htmlType="submit" className={styles.login_form_button} 
           >
-            {/* onClick={()=>state.code==1?props.history.push('/Main'):null} */}
             登录
           </Button>
           或者 <a href="">立即注册!</a>
