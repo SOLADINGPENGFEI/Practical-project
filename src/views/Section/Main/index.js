@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MainComp from '@/components/Menu'
 
+import Addquestion from '../Question/Addquestion/index'
 import style from './Main.css';
 import { Menu, Dropdown, Icon, Layout,Breadcrumb } from 'antd';
 import { Route,Switch } from 'dva/router'
@@ -64,7 +65,7 @@ class Main extends Component {
           </Breadcrumb>
             <div style={{ background: '#fff', padding: 25, minHeight: '80%' }}>
             <Switch>
-                <Route path='/main/question/add' component={null}></Route>
+                <Route path='/main/question/add' component={Addquestion}></Route>
                 <Route path='/main/question/type' component={null}></Route>
                 <Route path='/main/question/view' component={null}></Route>
                 <Route path='/main/user/add' component={null}></Route>
