@@ -1,39 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import {connect} from 'dva'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox,message } from 'antd';
 
 import styles from './login.css';
 
 function LoginPage(props) {
-    const [state, setState] = useState(() => {
-      // const initialState = someExpensiveComputation(props)
-      // return initialState
-      return {code:1}
-    })
-    console.log(state)
-    
-      //掉登陆接口
-      let {login} = props
-      useEffect(()=>{
-          login({
-              user_name: 'chenmanjie',
-              user_pwd: 'Chenmanjie123!'
-          })
-      }, [])
-        
-        let handleSubmit = e => {
-            e.preventDefault();
-            props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('values...', values);
-                login({
-                    user_name: values.username,
-                    user_pwd: values.password
-                })
-            }
-            console.log(props)
-            });
-        };
+    //判断是否登陆
+    useEffect(() => {
+      if(props.isLogin === 1) {
+          //提示登录成功
+          message.success('登录成功')
+          //存储cookie
+          //跳转主页面
+          console.log('props.history',props.history)
+          let pathName = decodeURIComponent(props.history.location.search.split('=')[1])
+          props.history.replace(pathName)
+      } else if(props.isLogin === -1) {
+        message.error('用户名或密码错误')
+      }
+    }, [props.isLogin])
+      //处理表单提交
+      let handleSubmit = e => {
+          e.preventDefault();
+          let {login} = props
+          props.form.validateFields((err, values) => {
+          if (!err) {
+              // console.log('values...', values);
+              login({
+                  user_name: values.username,
+                  user_pwd: values.password
+              })
+          }
+          console.log(props)
+          });
+      };
       const { getFieldDecorator } = props.form;
     
       return <div className={styles.index}>
@@ -74,6 +74,7 @@ function LoginPage(props) {
           </a>
           <Button type="primary" htmlType="submit" className={styles.login_form_button} 
           >
+            {/* onClick={()=>state.code==1?props.history.push('/Main'):null} */}
             登录
           </Button>
           或者 <a href="">立即注册!</a>
@@ -93,10 +94,10 @@ LoginPage.defaultProps = {
     // props: null
 }
 
-const mapState = state => {
+const mapState = (state) => {
     console.log('state...',state)
     return {
-       state
+       ...state.user
     }
 }
 const mapDispatch = dispatch => {
