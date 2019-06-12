@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MainComp from '@/components/Menu'
 
 import style from './Main.css';
-import { Menu, Dropdown, Icon, Layout } from 'antd';
+import { Menu, Dropdown, Icon, Layout,Breadcrumb } from 'antd';
 import { Route,Switch } from 'dva/router'
 const {Header, Content, Sider } = Layout
 
@@ -58,12 +58,25 @@ class Main extends Component {
             <Sider style={{ width: 200,height:"100%"}}>
                 <MainComp />
             </Sider>
-          <Content>
+          <Content style={{ padding: '0 50px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+          </Breadcrumb>
+            <div style={{ background: '#fff', padding: 25, minHeight: '80%' }}>
             <Switch>
                 <Route path='/main/question/add' component={null}></Route>
                 <Route path='/main/question/type' component={null}></Route>
                 <Route path='/main/question/view' component={null}></Route>
+                <Route path='/main/user/add' component={null}></Route>
+                <Route path='/main/user/view' component={null}></Route>
+                <Route path='/main/exam/add' component={null}></Route>
+                <Route path='/main/exam/manage' component={null}></Route>
+                <Route path='/main/class/manage' component={null}></Route>
+                <Route path='/main/class/classroomManage' component={null}></Route>
+                <Route path='/main/class/studentManage' component={null}></Route>
+                <Route path='/main/paper/approval' component={null}></Route>
             </Switch>
+            </div>
           </Content>
         </Layout>
       </Layout>

@@ -22,7 +22,7 @@ export default {
                 // 利用redux做路由跳转
                 dispatch(routerRedux.replace({
                   // pathname: `/?redirect=${encodeURIComponent(pathname)}`
-                  pathname:"/"
+                  pathname:"/login"
                 }))
             }
           } else {
