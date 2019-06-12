@@ -1,8 +1,6 @@
 import {login} from '@/services'
 import {setToken,getToken} from '@/utils/user'
 import {routerRedux} from 'dva/router'
-import { get } from 'http';
-
 export default {
     //命名空间
     namespace:'user',
@@ -21,14 +19,15 @@ export default {
                     if(!getToken()){
                         //利用redux做路由跳转
                         dispatch(routerRedux.replace({
-                            pathname:`/login?redirect=${encodeURIComponent(pathname)}`
+                            //pathname:`/login?redirect=${encodeURIComponent(pathname)}`
+                            pathname:'/login'
                         }))
                     }
                 }else{
                     //去登录页面,如果已经登录跳回首页
                     if(getToken()){
                         dispatch(routerRedux.replace({
-                            pathname:'/'
+                            pathname:'/main'
                         }))
                     }
                 }
@@ -56,8 +55,8 @@ export default {
 
     //同步操作
     reducers:{
-        save(state,action){
-            return {...state,...action.payload}
+        updateLogin(state,{payload}){
+            return {...state,isLogin:payload}
         }
     },
 }

@@ -1,19 +1,22 @@
-import React, {useEffect} from 'react';
+import React, {useState,useEffect} from 'react';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import { connect } from 'dva';
 import './index.scss';
 
 function LoginPage(props){
+
   // 判断是否登陆
   useEffect(()=>{
+    
     if (props.isLogin === 1){
       // 1.提示登陆成功
       message.success('登陆成功');
       // 2.存储cookie
       // 3.跳转主页面
       console.log('props.history', props.history);
-      let pathName = decodeURIComponent(props.history.location.search.split('=')[1]);
-      props.history.replace(pathName);
+      //let pathName = decodeURIComponent(props.history.location.search.split('=')[1]);
+      //props.history.replace('pathName');
+      props.history.replace('/main');
     }else if(props.isLogin === -1){
       // 登陆失败
       message.error('用户名或密码错误')
@@ -32,11 +35,14 @@ function LoginPage(props){
         })
       }
     });
+    
   };
 
   // 表单校验
   const { getFieldDecorator } = props.form;
-  return  <Form onSubmit={handleSubmit} className="login-form">
+
+  return  <div className="login">
+  <Form onSubmit={handleSubmit} className="login-form">
     <Form.Item>
       {getFieldDecorator('username', {
         validateTrigger: 'onBlur',
@@ -44,7 +50,7 @@ function LoginPage(props){
       })(
         <Input
           prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-          placeholder="Username"
+          placeholder="请输入用户名"
         />,
       )}
     </Form.Item>
@@ -55,7 +61,7 @@ function LoginPage(props){
         <Input
           prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
           type="password"
-          placeholder="Password"
+          placeholder="请输入用户密码"
         />,
       )}
     </Form.Item>
@@ -63,16 +69,16 @@ function LoginPage(props){
       {getFieldDecorator('remember', {
         valuePropName: 'checked',
         initialValue: true,
-      })(<Checkbox>Remember me</Checkbox>)}
+      })(<Checkbox>记住密码</Checkbox>)}
       <a className="login-form-forgot" href="">
-        Forgot password
+        忘记密码
       </a>
       <Button type="primary" htmlType="submit" className="login-form-button">
-        Log in
+        登录
       </Button>
-      Or <a href="">register now!</a>
     </Form.Item>
   </Form>;
+  </div>
 }
 
 // props的类型检查
