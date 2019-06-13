@@ -63,8 +63,8 @@ class Main extends Component {
             </Sider>
           <Content style={{ padding: '0 50px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-          </Breadcrumb>
+            <Breadcrumb.Item>学生管理系统</Breadcrumb.Item>
+          </Breadcrumb> 
             <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}>
             <Switch>
                 <Route path='/main/question/add' component={Addquestion}></Route>

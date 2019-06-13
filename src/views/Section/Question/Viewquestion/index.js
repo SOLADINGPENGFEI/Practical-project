@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'dva'
-import { Tag,Select,Input,Button,Table, Divider } from 'antd';
+import { Tag,Select,Input,Button,Table } from 'antd';
 import './view.scss'
 const { CheckableTag } = Tag;
 const { Option } = Select;
@@ -53,13 +53,13 @@ class questionView extends Component {
             {
                 dataIndex: 'user_name',
                 key: 'user_name',
-                render: text => <a href="javascript:;">{text}</a>,
+                render: text => <a>{text}</a>,
               },
             {
               key: 'action',
               render: (text, record) => (
                 <span>
-                  <a href="javascript:;">编辑 {record.name}</a>
+                  <a>编辑 {record.name}</a>
                 </span>
               ),
             }
