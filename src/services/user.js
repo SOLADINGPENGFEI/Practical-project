@@ -22,14 +22,14 @@ export function examType() {
   })
 }
 //获取试题类型
-export function getQuestionsType() {
+export function questionsType() {
   return request({
     url:'/exam/getQuestionsType',
     method:'GET'
   })
 }
 //获取所有的课程
-export function getSubject() {
+export function subject() {
   return request({
     url:'/exam/subject',
     method:'GET'
@@ -47,7 +47,7 @@ export function addQuestion(params) {
 //试题分类
 export function typeQuestion() {
   return request({
-    url: '/exam/examType',
+    url: '/exam/getQuestionsType',
     method: 'GET'
   })
 }
@@ -56,6 +56,14 @@ export function typeQuestion() {
 export function viewQuestion() {
   return request({
     url: '/exam/question/new',
+    method: 'GET'
+  })
+}
+
+//获取所有的试题
+export function allQuestion() {
+  return request({
+    url: '/exam/questions/new',
     method: 'GET'
   })
 }
