@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 import {connect} from 'dva'
 import { Form, Icon, Input, Button, Checkbox,message } from 'antd';
 
@@ -12,7 +12,7 @@ function LoginPage(props) {
           message.success('登录成功')
           //存储cookie
           //跳转主页面
-          console.log('props.history',props.history)
+          // console.log('props.history',props.history)
           props.history.replace("/main")
           // let pathName = decodeURIComponent(props.history.location.search.split('=')[1])
           // props.history.replace(pathName)
@@ -32,7 +32,7 @@ function LoginPage(props) {
                   user_pwd: values.password
               })
           }
-          console.log(props)
+          // console.log(props)
           });
       };
       const { getFieldDecorator } = props.form;

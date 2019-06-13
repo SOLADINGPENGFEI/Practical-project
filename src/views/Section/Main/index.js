@@ -66,16 +66,16 @@ class Main extends Component {
             <div style={{ background: '#fff', padding: 25, minHeight: '80%' }}>
             <Switch>
                 <Route path='/main/question/add' component={Addquestion}></Route>
-                <Route path='/main/question/type' component={null}></Route>
-                <Route path='/main/question/view' component={null}></Route>
-                <Route path='/main/user/add' component={null}></Route>
-                <Route path='/main/user/view' component={null}></Route>
-                <Route path='/main/exam/add' component={null}></Route>
-                <Route path='/main/exam/manage' component={null}></Route>
-                <Route path='/main/class/manage' component={null}></Route>
-                <Route path='/main/class/classroomManage' component={null}></Route>
-                <Route path='/main/class/studentManage' component={null}></Route>
-                <Route path='/main/paper/approval' component={null}></Route>
+                <Route path='/main/question/type' component={Addquestion}></Route>
+                <Route path='/main/question/view' component={Addquestion}></Route>
+                <Route path='/main/user/add' component={Addquestion}></Route>
+                <Route path='/main/user/view' component={Addquestion}></Route>
+                <Route path='/main/exam/add' component={Addquestion}></Route>
+                <Route path='/main/exam/manage' component={Addquestion}></Route>
+                <Route path='/main/class/manage' component={Addquestion}></Route>
+                <Route path='/main/class/classroomManage' component={Addquestion}></Route>
+                <Route path='/main/class/studentManage' component={Addquestion}></Route>
+                <Route path='/main/paper/approval' component={Addquestion}></Route>
             </Switch>
             </div>
           </Content>

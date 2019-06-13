@@ -43,7 +43,7 @@ export default {
       *login({payload},{call, put}) {
         // console.log('payload...', payload, login)
         let data = yield call(login,payload)
-        console.log('data...',data)
+        // console.log('data...',data)
         //设置登录态到cookie里
         if(data.code === 1) {
           setToken(data.token)
