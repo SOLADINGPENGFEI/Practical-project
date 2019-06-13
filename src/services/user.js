@@ -13,6 +13,60 @@ export function login(params) {
     data: params
   })
 }
+
+//添加用户接口
+export function userAdd(params){
+  return request({
+      url:'/user',
+      method:'POST',
+      data:params
+  })
+}
+
+//更新用户接口
+export function userUpdate(params){
+  return request({
+      url:'/user/user',
+      method:'PUT',
+      data:params
+  })
+}
+
+//添加身份接口
+export function addIdentity(params){
+  return request({
+      url:'/user/identity/edit',
+      method:'GET'
+  })
+}
+
+//给身份设定api接口权限接口
+export function setIdentityApi(params){
+  return request({
+      url:'/user/setIdentityApi',
+      method:'POST',
+      data:params
+  })
+}
+
+//添加视图权限接口
+export function authorityView(params){
+  return request({
+      url:'/user/authorityView/edit',
+      method:'GET'
+  })
+}
+
+//给身份设定视图权限接口
+export function setIdentityView(params){
+  return request({
+      url:'/user/setIdentityView',
+      method:'POST',
+      data:params
+  })
+}
+
+
 //获取考试类型
 
 export function examType() {
@@ -59,3 +113,4 @@ export function viewQuestion() {
     method: 'GET'
   })
 }
+
