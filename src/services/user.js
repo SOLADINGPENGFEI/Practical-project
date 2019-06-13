@@ -65,7 +65,13 @@ export function setIdentityView(params){
       data:params
   })
 }
-
+//展示用户接口
+export function userView(){
+  return request({
+      url:'/user/user',
+      method:'GET'
+  })
+}
 
 //获取考试类型
 
