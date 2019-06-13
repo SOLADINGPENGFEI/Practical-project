@@ -6,7 +6,7 @@ class questionType extends Component {
 
     state = { 
        visible: false,
-       columns: []
+       typeData: []
      }
      showModal = () => {
        this.setState({
@@ -24,17 +24,10 @@ class questionType extends Component {
          visible: false
        })
      }
-     handleValue = e => {
-      console.log(e.target.value)
-      // this.props.typeData?this.props.typeData.push({
-      //     questions_type_sort:+new Date(),
-      //     questions_type_text: e.target.value
-      //   }):{}
-      
-     }
+     
     render() {
         const {typeData} = this.props
-        console.log(typeData)
+        
           const columns = [
             {
               title: '类型ID',
@@ -61,7 +54,7 @@ class questionType extends Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
-         <Input placeholder="请输入类型名称" onChange={e=>this.handleValue(e)}/>
+         <Input placeholder="请输入类型名称" onBlur={(e)=>this.handleValue(e)}/>
         </Modal>
           <Table  columns={columns} dataSource={typeData?typeData.data:null} />
         </div>
@@ -69,6 +62,15 @@ class questionType extends Component {
     }
     componentDidMount() {
         this.props.getType()
+        this.handleValue = e => {
+          const value = e.target.value
+            let obj = {
+              questions_type_text: value,
+              questions_type_id: +new Date(),
+              questions_type_sort: this.props.typeData.data.length +1
+            }
+            this.props.typeData?this.props.typeData.data.push(obj):null
+        }
     }
 }
 const mapState = state => {
