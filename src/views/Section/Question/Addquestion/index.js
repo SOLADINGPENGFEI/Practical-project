@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom'
 import Editor from 'for-editor'
 import {connect} from 'dva'
 import {Button,Select, Input,Form} from 'antd'
@@ -17,9 +16,15 @@ class Addquestion extends Component {
         this.setState({
           value
         })
+        console.log(value)
       }
-
-      
+      getTit = e => {
+        console.log(e.target.value)
+      }
+      handleChangeExam = (type, value) => {
+        console.log(type,value)
+        
+      }
       render() {
         const { value } = this.state
         const {data,subdata,questionData} = this.props
@@ -29,7 +34,7 @@ class Addquestion extends Component {
               <h3>题目信息</h3>
               <div>
                 <div><label>题干</label></div>
-                <div><Input placeholder="请输入题目标题,不超过20个字" /></div>
+                <div><Input placeholder="请输入题目标题,不超过20个字" onChange={e=>this.getTit(e)}/></div>
                 <div>
                 <div><label>题目主题</label></div>
                 <Editor value={value} onChange={this.handleChange.bind(this)} />
@@ -38,7 +43,8 @@ class Addquestion extends Component {
               <div>
                 <div><label>请选择考试类型:</label></div>
                 <div>
-                  <Select defaultValue="请选择" style={{ width: 220 }}>
+                  <Select defaultValue="请选择" style={{ width: 220 }}
+                  onChange={(value)=>this.handleChangeExam('Exam',value)}>
                     {
                       data?data.data.map(item=>(
                         <Option value={item.exam_name} 
@@ -52,7 +58,8 @@ class Addquestion extends Component {
                 <div>
                   <div><label>请选择课程类型:</label></div>
                   <div>
-                    <Select defaultValue="请选择" style={{ width: 220 }}>
+                    <Select defaultValue="请选择" style={{ width: 220 }}
+                    onChange={(value)=>this.handleChangeExam('subject',value)}>
                       {
                         subdata?subdata.data.map(item=>(
                             <Option value={item.subject_text}
@@ -66,7 +73,8 @@ class Addquestion extends Component {
               <div>
                 <div><label>请选择题目类型:</label></div>
                 <div>
-                  <Select defaultValue="请选择" style={{ width: 220 }}>
+                  <Select defaultValue="请选择" style={{ width: 220 }}
+                  onChange={(value)=>this.handleChangeExam('type',value)}>
                     {
                       questionData?questionData.data.map(item=>(
                         <Option value={item.questions_type_text}
@@ -80,7 +88,7 @@ class Addquestion extends Component {
                 <div><label>答案信息:</label></div>
                 <Editor value={value} onChange={this.handleChange.bind(this)} />
               </div>
-              <Button>提交</Button>
+              <Button onClick={this.addTest}>提交</Button>
           </div>
 
         )
@@ -90,7 +98,9 @@ class Addquestion extends Component {
         this.props.examType()
         this.props.getSubject()
         this.props.getquestionData()
-        // this.props.Addquestion()
+        // this.props.Addquestion({
+          
+        // })
       }
     
 }

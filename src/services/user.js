@@ -67,3 +67,10 @@ export function allQuestion() {
     method: 'GET'
   })
 }
+//获取用户ID
+export function userMsg() {
+    return request({
+      url:'/user/identity',
+      method: 'GET'
+    })
+}

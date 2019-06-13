@@ -136,6 +136,7 @@ const mapDispatch = dispatch => {
       },getAllData(){
         dispatch({
             type:'exam/allQuestion'
+
         })
       }
    }

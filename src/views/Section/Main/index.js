@@ -4,6 +4,7 @@ import MainComp from '@/components/Menu'
 import Addquestion from '../Question/Addquestion/index'
 import typeQuestion from '../Question/Typequestion/index'
 import questionView from '../Question/Viewquestion/index'
+
 import style from './Main.css';
 import { Menu, Dropdown, Icon, Layout,Breadcrumb } from 'antd';
 import { Route,Switch } from 'dva/router'
