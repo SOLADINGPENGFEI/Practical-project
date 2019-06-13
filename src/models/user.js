@@ -56,6 +56,7 @@ export default {
     //同步操作
     reducers:{
         updateLogin(state,{payload}){
+            console.log('state...',state )
             return {...state,isLogin:payload}
         }
     },

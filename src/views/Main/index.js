@@ -5,6 +5,7 @@ import MyMenu from '@/components/Menu/Menu'
 import { Layout, Menu, Dropdown, Icon } from 'antd';
 import QuestionsAdd from '@/views/Main/Questions/Add/add.js'
 import QuestionsType from '@/views/Main/Questions/Type/type.js'
+import QuestionsView from '@/views/Main/Questions/View/view.js'
 
 const { Header, Content, Sider } = Layout;
 
@@ -54,12 +55,11 @@ function IndexPage(props) {
             <Sider>
                 <MyMenu />
             </Sider>
-        </Layout>
-        <Content>
+            <Content>
             <Switch>
                 <Route path='/questions/add' component={QuestionsAdd}></Route>
                 <Route path='/questions/type' component={QuestionsType}></Route>
-                <Route path='/questions/view' component={null}></Route>
+                <Route path='/questions/view' component={QuestionsView}></Route>
                 <Route path='/users/add' component={null}></Route>
                 <Route path='/users/view' component={null}></Route>
                 <Route path='/exam/add' component={null}></Route>
@@ -70,6 +70,8 @@ function IndexPage(props) {
                 <Route path='/read/awit' component={null}></Route>
             </Switch>
         </Content>
+        </Layout>
+       
     </Layout>
 }
 

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Editor from 'for-editor'
-import styles from './type.scss'
 
-class QuestionType extends Component {
+class Markdown extends Component {
   constructor() {
     super()
     this.state = {
@@ -19,11 +18,9 @@ class QuestionType extends Component {
   render() {
     const { value } = this.state
     return (
-      <div className={styles.content}>
-        <h2>试题分类</h2>
-      </div>
+      <Editor value={value} height="auto" onChange={this.handleChange.bind(this)} />
     )
   }
 }
 
-export default QuestionType
+export default Markdown;

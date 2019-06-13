@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Editor from 'for-editor'
-import styles from './type.scss'
+import styles from './view.scss'
 
-class QuestionType extends Component {
+class QuestionView extends Component {
   constructor() {
     super()
     this.state = {
@@ -19,11 +19,11 @@ class QuestionType extends Component {
   render() {
     const { value } = this.state
     return (
-      <div className={styles.content}>
-        <h2>试题分类</h2>
+      <div>
+        <h2>查看试题</h2>
       </div>
     )
   }
 }
 
-export default QuestionType
+export default QuestionView
