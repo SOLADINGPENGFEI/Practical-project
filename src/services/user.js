@@ -79,3 +79,11 @@ export function userMsg() {
       method: 'GET'
     })
 }
+//更新试题
+export function updatequestion(params) {
+  return request({
+    url: '/exam/questions/update',
+    method: 'PUT',
+    data: params
+  })
+}

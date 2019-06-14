@@ -5,7 +5,7 @@ import  {
   subject,
   typeQuestion,
   allQuestion,
-  userMsg} from '../services/index'
+  userMsg,updatequestion} from '../services/index'
 // import {setToken, getToken} from '@/utils/user'
 
 export default {
@@ -79,6 +79,15 @@ export default {
           type: 'UserId',
           userData
         })
+      },
+      //更新试题
+      *updatequestion({payload},{call,put}) {
+        let updateData = yield call(updatequestion)
+        console.log('updateData...',updateData)
+        yield put({
+          type: 'getUpdate',
+          updateData
+        })
       }
     },
   
@@ -105,6 +114,10 @@ export default {
       },
       UserId(state, {userData}) {
         return {...state, userData}
+      },
+      //更新试题
+      getUpdate(state,{updateData}) {
+        return {...state, updateData}
       }
     },
   

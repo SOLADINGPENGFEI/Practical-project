@@ -4,6 +4,8 @@ import MainComp from '@/components/Menu'
 import Addquestion from '../Question/Addquestion/index'
 import typeQuestion from '../Question/Typequestion/index'
 import questionView from '../Question/Viewquestion/index'
+import EditQuestion from '../Question/EditQuestion/index'
+import DetailCont from '../Question/Detail/index'
 
 import style from './Main.css';
 import { Menu, Dropdown, Icon, Layout,Breadcrumb } from 'antd';
@@ -68,21 +70,23 @@ class Main extends Component {
           </Breadcrumb> 
             <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}>
             <Switch>
-                <Route path='/main/question/add' component={Addquestion}></Route>
-                <Route path='/main/question/type' component={typeQuestion}></Route>
-                <Route path='/main/question/view' component={questionView}></Route>
+                <Route path='/main/question/add' component={Addquestion}/>
+                <Route path='/main/question/type' component={typeQuestion}/>
+                <Route path='/main/question/view' component={questionView}/>
+                <Route path='/main/question/viewEdit' component={EditQuestion}/>
+                <Route path='/main/question/viewDetail' component={DetailCont}/>
             </Switch>
             </div>
             <div>
               <Switch>
-                <Route path='/main/user/add' component={null}></Route>
-                <Route path='/main/user/view' component={null}></Route>
-                <Route path='/main/exam/add' component={null}></Route>
-                <Route path='/main/exam/manage' component={null}></Route>
-                <Route path='/main/class/manage' component={null}></Route>
-                <Route path='/main/class/classroomManage' component={null}></Route>
-                <Route path='/main/class/studentManage' component={null}></Route>
-                <Route path='/main/paper/approval' component={null}></Route>
+                <Route path='/main/user/add' component={null}/>
+                <Route path='/main/user/view' component={null}/>
+                <Route path='/main/exam/add' component={null}/>
+                <Route path='/main/exam/manage' component={null}/>
+                <Route path='/main/class/manage' component={null}/>
+                <Route path='/main/class/classroomManage' component={null}/>
+                <Route path='/main/class/studentManage' component={null}/>
+                <Route path='/main/paper/approval' component={null}/>
               </Switch>
             </div>
           </Content>
