@@ -1,4 +1,4 @@
-import {login,userAdd} from '../services/index'
+import {login} from '../services/index'
 import {setToken, getToken} from '@/utils/user'
 import {routerRedux} from 'dva/router'
 
@@ -52,15 +52,6 @@ export default {
           type: 'updateLogin',
           payload: data.code === 1? 1 : -1
         })
-      },
-      *userAdd({payload},{call,put}) {
-        console.log('payload...',payload)
-          let AddUser = yield call(userAdd,payload)
-          console.log('AddUser...',AddUser)
-          yield put({
-            type:'getuser',
-            payload: AddUser
-          })
       }
    
     },
@@ -71,9 +62,7 @@ export default {
         // console.log(payload)
           return {...state,isLogin:payload}
       },
-      getuser(state,{payload}) {
-        return {...state, payload}
-      }
+      
     },
   
   };
