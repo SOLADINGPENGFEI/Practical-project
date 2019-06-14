@@ -7,14 +7,45 @@ const { Option } = Select;
 const InputGroup = Input.Group;
 class questionView extends Component {
     state = { 
-        checked: true
+        checked: true,
+        subject_id:'',
+        exam_id:'',
+        questions_type_id:''
      }
      handleChange = checked => {
         this.setState({ checked });
       };
+   
+      examType=(id)=>{
+        this.setState({
+          exam_id:id
+        })
+      }
+      titleType=(id)=>{
+        this.setState({
+          questions_type_id:id
+        })
+      }
+      type=(id)=>{
+        this.setState({
+          subject_id:id
+        })
+      }
+      //点击查询
+      upData=()=>{
+        const _this=this;
+        // console.log(this.state.exam_id,this.state.questions_type_id,this.state.subject_id)
+        let payload={
+          exam_id:_this.state.exam_id,
+          questions_type_id:_this.state.questions_type_id,
+          subject_id:_this.state.subject_id
+        }
+        _this.props.getCondition(payload)
+      //  console.log('this.props',payload)
+      }
     render() {
         const {subdata,data,questionData,AllData} = this.props
-        console.log(AllData)
+        // console.log(AllData)
         const columns = [
             {
               dataIndex: 'title',
@@ -73,6 +104,7 @@ class questionView extends Component {
                        subdata?subdata.data.map(item=>(
                         <CheckableTag  key={item.subject_id}
                         style={{marginBottom: '8px'}}
+                        onChange={this.type.bind(this,item.subject_id)}
                         >{item.subject_text}</CheckableTag >
                        )):null
                     }
@@ -80,25 +112,25 @@ class questionView extends Component {
                 <div className='type'>
                 <InputGroup compact >
                     <h4>考试类型</h4>
-                    <Select defaultValue="请选择">
+                    <Select defaultValue="请选择" onChange={this.examType.bind(this)}>
                         {
                         data?data.data.map(item=>(
-                            <Option value={item.exam_name} 
+                            <Option value={item.exam_id}
                             key={item.exam_id}>{item.exam_name}</Option>
                         )):null
                         }
                     </Select>
                     <h4>题目类型</h4>
-                    <Select defaultValue="请选择">
+                    <Select defaultValue="请选择" onChange={this.titleType.bind(this)}>
                     {
                         questionData?questionData.data.map(item=>(
-                            <Option value={item.questions_type_text}
+                            <Option value={item.questions_type_id}
                             key={item.questions_type_id}>{item.questions_type_text}</Option>
                         )):null
                         }
                     </Select>
                 </InputGroup>
-                <Button type="primary" icon="search">查询</Button>
+                <Button type="primary" icon="search" onClick={this.upData.bind(this)}>查询</Button>
                 </div>
                 </div>
                 <div className='list'>
@@ -129,15 +161,24 @@ const mapDispatch = dispatch => {
         dispatch({
           type:'exam/examType'
         })
-      },getquestionData() {
+      },
+      getquestionData() {
         dispatch({
           type: 'exam/questionsType'
         })
-      },getAllData(){
+      },
+      getAllData(){
         dispatch({
             type:'exam/allQuestion'
 
         })
+      },
+      getCondition(payload){
+
+        dispatch({
+          type:'exam/condition',
+          payload
+      })
       }
    }
 }

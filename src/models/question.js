@@ -5,7 +5,9 @@ import  {
   subject,
   typeQuestion,
   allQuestion,
-  userMsg} from '../services/index'
+  userMsg,
+  Condition
+} from '../services/index'
 // import {setToken, getToken} from '@/utils/user'
 
 export default {
@@ -51,7 +53,7 @@ export default {
       *addQuestion({payload},{call,put}) {
         // console.log('payload...',payload)
         let addData = yield call(addQuestion,payload)
-        console.log('addData...',addData)
+        //console.log('addData...',addData)
         yield put({
           type:'addquestion',
           payload: addData.code === 1? 1:-1
@@ -67,7 +69,7 @@ export default {
       },
       *allQuestion({payload},{call,put}) {
         let AllData = yield call(allQuestion)
-          console.log('AllData...',AllData)
+          // console.log('AllData...',AllData)
           yield put({
             type: 'getAllData',
             AllData
@@ -78,6 +80,16 @@ export default {
         yield put({
           type: 'UserId',
           userData
+        })
+      },
+      //按条件获取试题
+      *condition({payload},{call,put}){
+       
+        let AllData=yield call(Condition,payload)
+        console.log('conditionData',AllData)
+        yield put({
+          type: 'getAllData',
+          AllData
         })
       }
     },
@@ -94,7 +106,7 @@ export default {
         return {...state,questionData}
       },
       addquestion(state, {payload}) {
-        console.log(payload)
+        // console.log(payload)
         return {...state,addExamCode:payload}
       },
       Type(state, {typeData}) {
@@ -105,6 +117,9 @@ export default {
       },
       UserId(state, {userData}) {
         return {...state, userData}
+      },
+      getCondition(state,{conditionData}){
+        return {...state,conditionData}
       }
     },
   

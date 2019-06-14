@@ -79,3 +79,14 @@ export function userMsg() {
       method: 'GET'
     })
 }
+
+//按条件获取试题接口
+export function Condition(params) {
+  console.log(params)
+  // let {exam_id,subject_id,questions_type_id}=payload
+  return request({
+    url:'/exam/questions/condition',
+    method: 'GET',
+    params
+  })
+}
