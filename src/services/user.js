@@ -3,6 +3,11 @@ import request from '../utils/request';
 export function query() {
   return request('/api/users'); 
 }
+export function UserInfo() {
+  return request({
+    url:"/user/userInfo",
+  });
+}
 
 
 //登录接口

@@ -4,7 +4,8 @@ import  {
   questionsType,
   subject,
   typeQuestion,
-  allQuestion} from '../services/index'
+  allQuestion,
+  userMsg} from '../services/index'
 // import {setToken, getToken} from '@/utils/user'
 
 export default {
@@ -13,7 +14,7 @@ export default {
   
     // 模块内部的状态
     state: {
-      
+        addExamCode: 0
     },
   
     subscriptions: {
@@ -48,11 +49,12 @@ export default {
         })
       },
       *addQuestion({payload},{call,put}) {
-        let addData = yield call(addQuestion)
-        // console.log('addData...',addData)
+        // console.log('payload...',payload)
+        let addData = yield call(addQuestion,payload)
+        console.log('addData...',addData)
         yield put({
           type:'addquestion',
-          payload:addData
+          payload: addData.code === 1? 1:-1
         })
       },
       *typeQuestion({payload},{call,put}) {
@@ -63,13 +65,20 @@ export default {
             typeData
           })
       },
-      *allQuestion({pauload},{call,put}) {
+      *allQuestion({payload},{call,put}) {
         let AllData = yield call(allQuestion)
           console.log('AllData...',AllData)
           yield put({
             type: 'getAllData',
             AllData
           })
+      },
+      *userMsg({payload},{call,put}) {
+        let userData = yield call(userMsg)
+        yield put({
+          type: 'UserId',
+          userData
+        })
       }
     },
   
@@ -85,13 +94,17 @@ export default {
         return {...state,questionData}
       },
       addquestion(state, {payload}) {
-        return {...state,payload}
+        console.log(payload)
+        return {...state,addExamCode:payload}
       },
       Type(state, {typeData}) {
         return {...state,typeData}
       },
       getAllData(state,{AllData}) {
         return {...state, AllData}
+      },
+      UserId(state, {userData}) {
+        return {...state, userData}
       }
     },
   
