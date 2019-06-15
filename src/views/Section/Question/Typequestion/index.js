@@ -19,7 +19,6 @@ class questionType extends Component {
        })
      }
      handleCancel = e => {
-       console.log(e)
        this.setState({
          visible: false
        })
@@ -69,6 +68,10 @@ class questionType extends Component {
               questions_type_id: +new Date(),
               questions_type_sort: this.props.typeData.data.length +1
             }
+            // this.props.findType({
+            //   questions_type_text: value,
+            //   questions_type_sort: this.props.typeData.data.length +1
+            // })
             this.props.typeData?this.props.typeData.data.push(obj):null
         }
     }
@@ -81,6 +84,11 @@ const mapDispatch = dispatch => {
         getType() {
             dispatch({
                 type: 'exam/typeQuestion'
+            })
+        },
+        findType() {
+            dispatch({
+              type: 'exam/insertType'
             })
         }
     }

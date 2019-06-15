@@ -87,3 +87,17 @@ export function updatequestion(params) {
     data: params
   })
 }
+export function FindData(params) {
+  return request({
+    url: '/exam/questions/condition',
+    method: 'POST',
+    data: params
+  })
+}
+//添加试题类型
+export function insertType() {
+  return request({
+    url: '/exam/insertQuestionsType',
+    method: 'GET'
+  })
+}

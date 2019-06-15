@@ -5,7 +5,7 @@ import  {
   subject,
   typeQuestion,
   allQuestion,
-  userMsg,updatequestion} from '../services/index'
+  userMsg,updatequestion,FindData,insertType} from '../services/index'
 // import {setToken, getToken} from '@/utils/user'
 
 export default {
@@ -88,6 +88,23 @@ export default {
           type: 'getUpdate',
           updateData
         })
+      },
+      *FindData({payload},{call,put}) {
+        let findquestion = yield call(FindData,payload)
+        console.log('findquestion...',findquestion)
+        yield put({
+          type: 'Find',
+          findquestion
+        })
+      },
+      //添加试题类型
+      *insertType({payload},{call,put}) {
+        let typeData = yield call(insertType)
+        console.log('insertType...',typeData)
+        yield put({
+          type: 'getType',
+          typeData
+        })
       }
     },
   
@@ -118,6 +135,13 @@ export default {
       //更新试题
       getUpdate(state,{updateData}) {
         return {...state, updateData}
+      },
+      Find(state,{findquestion}) {
+        return {...state, findquestion}
+      },
+      //添加试题类型
+      getType(state,{typeData}) {
+        return {...state,typeData}
       }
     },
   
